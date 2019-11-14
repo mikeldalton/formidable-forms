@@ -24,6 +24,8 @@
 	--medium-sidebar: 350px;
 	--big-sidebar: 390px;
 	--biggest-sidebar: 450px;
+	--wp-sidebar-width: 160px;
+	--scrollbar-cushion: 10px;
 }
 
 a, .widget .widget-top, .stuffbox h3, .frm-collapsed {
@@ -484,6 +486,8 @@ ul.frm_form_nav > li {
 	margin-bottom: 0;
 	background: #fff;
 	width: auto;
+	width: calc( 100vw - var(--biggest-sidebar) - var(--wp-sidebar-width) - var(--scrollbar-cushion) ) ;
+	min-width: auto;
 	float: none;
 	flex: 2;
 }
@@ -1894,7 +1898,13 @@ table.frm-list-templates thead th {
 
 .frm-admin-page-formidableedit #frm_builder_page {
 	display: block !important;
+	position: fixed;
 }
+
+.frm-admin-page-formidableedit #wpfooter {
+	display: none;
+}
+
 
 .frm-white-body .updated,
 .frm-white-body .notice,
@@ -6655,6 +6665,9 @@ Responsive Design
 }
 
 @media only screen and (max-width: 960px) {
+	.frm_wrap {
+		--wp-sidebar-width: 36px;
+	}
 	.auto-fold #adminmenuwrap {
 		width: 36px;
 	}
@@ -6780,7 +6793,8 @@ Responsive Design
 @media only screen and (max-width: 782px) {
 	.frm_wrap {
 		--small-sidebar: 20%;
-		--medium-sidebar: 35%
+		--medium-sidebar: 35%;
+		--wp-sidebar-width: 0;
 	}
 
 	#form_settings_page .advanced_settings .form-table td, .form-table th {
