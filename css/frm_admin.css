@@ -6825,7 +6825,8 @@ Responsive Design
 	.frm_wrap {
 		--small-sidebar: 20%;
 		--medium-sidebar: 35%;
-		--wp-sidebar-width: 0;
+		--wp-sidebar-width: 0px;
+		--scrollbar-cushion: 0vw;
 	}
 
 	#form_settings_page .advanced_settings .form-table td, .form-table th {
