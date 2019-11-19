@@ -491,11 +491,11 @@ ul.frm_form_nav > li {
 }
 
 #frm_builder_page.frm_wrap #post-body-content {
-	width: calc( 100vw - var(--biggest-sidebar) - var(--wp-sidebar-width) - var(--scrollbar-cushion) ) ;
+	width: calc( 100vw - var(--biggest-sidebar) - var(--wp-sidebar-width) - var(--scrollbar-cushion) );
 }
 
 #form_settings_page.frm_wrap #post-body-content{
-	width: calc( 100vw - var(--small-sidebar) - var(--wp-sidebar-width) - var(--scrollbar-cushion) ) ;
+	width: calc( 100vw - var(--small-sidebar) - var(--wp-sidebar-width) - var(--scrollbar-cushion) );
 }
 
 #frm_builder_page.frm_wrap #post-body-content,
@@ -6809,9 +6809,10 @@ Responsive Design
 @media only screen and (max-width: 782px) {
 	.frm_wrap {
 		--small-sidebar: 20%;
+		--small-sidebar: 20vw;
 		--medium-sidebar: 35%;
-		--wp-sidebar-width: 0;
-		--scrollbar-cushion: 0;
+		--wp-sidebar-width: 0px;
+		--scrollbar-cushion: 0vw;
 	}
 
 	#form_settings_page .advanced_settings .form-table td, .form-table th {
