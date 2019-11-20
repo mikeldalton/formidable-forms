@@ -755,6 +755,16 @@ p.frm_has_shortcodes {
 	border-bottom: 2px solid var(--sidebar-hover);
 }
 
+#frm-nav-tabs {
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0;
+	background-color: var(--sidebar-color);
+	z-index: 1000;
+	margin-top: 0;
+	padding-top: 5px;
+}
+
 .frm-inline-modal .frm-nav-tabs,
 #frm_adv_info .frm-nav-tabs {
 	margin: 5px 0 10px;
@@ -2701,6 +2711,10 @@ input[type="checkbox"] {
 	width: auto !important;
 }
 
+.frm_form_fields select.auto_width {
+	min-width: 60px;
+}
+
 .frm_form_fields input:focus, .frm_form_fields select:focus,
 .frm_form_fields textarea:focus, .frm_focus_field input {
 	background-color: #fff;
@@ -4235,20 +4249,20 @@ table td, .form-table tr td {
 }
 
 .frm-single-settings .frm_logic_row > select {
-	max-width: 32.5%;
+	max-width: 32.5% !important;
 }
 
 .frm-single-settings .frm_logic_row select:nth-child(2) {
-	max-width: 20%;
+	max-width: 20% !important;
 }
 
 .frm-single-settings .frm_logic_row span input,
 .frm-single-settings .frm_logic_row span select {
-	max-width: 36%;
+	max-width: 36% !important;
 }
 
 .frm-single-settings .frm_logic_row input {
-	max-width: 118px;
+	max-width: 118px !important;
 }
 
 .advanced_settings .frm_logic_row {
@@ -4257,7 +4271,7 @@ table td, .form-table tr td {
 
 .advanced_settings .frm_logic_row select,
 .advanced_settings .frm_logic_row input {
-	max-width: 30%;
+	max-width: 30% !important;
 }
 
 .frm_form_action_settings .frm_logic_row p {
@@ -6419,6 +6433,7 @@ iframe#dyncontent_ifr {
 .frm_wrap input[type="text"],
 .frm_wrap input[type="number"],
 .frm_wrap select,
+.wp-admin .frm_wrap select,
 .field-group textarea,
 .field-group input[type="text"],
 .field-group select {
@@ -6430,7 +6445,14 @@ iframe#dyncontent_ifr {
 	color: var(--dark-grey);
 	font-size: 15px;
 	margin: 0;
-	background: #fff;
+	background-color: #fff;
+	line-height: 1;
+}
+
+#postbox-container-2 textarea,
+.frm_wrap textarea,
+.field-group textarea {
+	line-height: 2;
 }
 
 .frm_wrap input[type="number"] {
@@ -6439,6 +6461,10 @@ iframe#dyncontent_ifr {
 
 .frm_wrap select {
 	padding: 2px;
+}
+
+.wp-admin .frm_wrap select {
+	max-width: 100%;
 }
 
 .frm_form_field.frm_scroll_box .frm_opt_container,
@@ -6477,6 +6503,7 @@ iframe#dyncontent_ifr {
 	padding-top: 0 !important;
 }
 
+.wp-admin .frm_wrap .form-table select,
 #postbox-container-2 select,
 .wp-admin .frm_wrap select {
 	line-height: 32px;
@@ -6488,6 +6515,20 @@ iframe#dyncontent_ifr {
 	line-height: 40px;
 	height: 40px;
 	width: 100%;
+}
+
+/** TODO: After 5.5, remove the branch clases **/
+.branch-5-5 #postbox-container-2 select,
+.branch-5-5.wp-admin .frm_wrap select,
+.branch-5-5 .frm_wrap .frm_form_builder select,
+.branch-5-4 #postbox-container-2 select,
+.branch-5-4.wp-admin .frm_wrap select,
+.branch-5-4 .frm_wrap .frm_form_builder select,
+.branch-5-3 #postbox-container-2 select,
+.branch-5-3.wp-admin .frm_wrap select,
+.branch-5-3 .frm_wrap .frm_form_builder select {
+	height: auto;
+	padding: 0 24px 0 12px;
 }
 
 .frm-fields button.btn,
