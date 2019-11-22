@@ -25,7 +25,7 @@
 	--big-sidebar: 390px;
 	--biggest-sidebar: 450px;
 	--wp-sidebar-width: 160px;
-	--scrollbar-cushion: 10px;
+	--scrollbar-cushion: 0px;
 }
 
 a, .widget .widget-top, .stuffbox h3, .frm-collapsed {
