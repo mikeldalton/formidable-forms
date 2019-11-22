@@ -116,7 +116,7 @@ class FrmFormsHelper {
 			?>
 			<div id="frm_bs_dropdown">
 				<h1>
-					<span class="frm_bstooltip" title="<?php echo esc_attr( $truncated_name === $name ? '' : $name ); ?>" data-placement="right">
+					<span class="frm_bstooltip" title="<?php echo esc_attr( $truncated_name === $name ? '' : $name ); ?>" data-placement="right" data-original-title="<?php echo esc_attr( $truncated_name === $name ? '' : $name ); ?>">
 						<?php echo esc_html( $name ); ?>
 					</span>
 				</h1>
@@ -128,7 +128,7 @@ class FrmFormsHelper {
 		<div id="frm_bs_dropdown" class="dropdown <?php echo esc_attr( is_rtl() ? 'pull-right' : 'pull-left' ); ?>">
 			<a href="#" id="frm-navbarDrop" class="frm-dropdown-toggle" data-toggle="dropdown">
 				<h1>
-					<span class="frm_bstooltip" title="<?php echo esc_attr( $truncated_name === $name ? '' : $name ); ?>" data-placement="right">
+					<span class="frm_bstooltip" title="<?php echo esc_attr( $truncated_name === $name ? '' : $name ); ?>" data-placement="right" data-original-title="<?php echo esc_attr( $truncated_name === $name ? '' : $name ); ?>">
 						<?php echo esc_html( $name ); ?>
 					</span>
 					<?php FrmAppHelper::icon_by_class( 'frmfont frm_arrowdown4_icon', array( 'aria-hidden' => 'true' ) ); ?>
