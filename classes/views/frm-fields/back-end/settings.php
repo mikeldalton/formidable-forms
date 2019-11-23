@@ -38,17 +38,19 @@
 
 			if ( $display['unique'] ) {
 				?>
-				<label for="frm_uniq_field_<?php echo esc_attr( $field['id'] ); ?>" class="frm_inline_label frm_help" title="<?php esc_attr_e( 'Unique: Do not allow the same response multiple times. For example, if one user enters \'Joe\', then no one else will be allowed to enter the same name.', 'formidable' ); ?>"><input type="checkbox" name="field_options[unique_<?php echo esc_attr( $field['id'] ); ?>]" id="frm_uniq_field_<?php echo esc_attr( $field['id'] ); ?>" value="1" <?php checked( $field['unique'], 1 ); ?> class="frm_mark_unique" />
+				<label for="frm_uniq_field_<?php echo esc_attr( $field['id'] ); ?>" class="frm_inline_label"><input type="checkbox" name="field_options[unique_<?php echo esc_attr( $field['id'] ); ?>]" id="frm_uniq_field_<?php echo esc_attr( $field['id'] ); ?>" value="1" <?php checked( $field['unique'], 1 ); ?> class="frm_mark_unique" />
 					<?php esc_html_e( 'Unique', 'formidable' ); ?>
+					<span class="frm_help frm_icon_font frm_tooltip_icon" title="<?php esc_attr_e( 'Unique: Do not allow the same response multiple times. For example, if one user enters \'Joe\', then no one else will be allowed to enter the same name.', 'formidable' ); ?>"></span>
 				</label>
 				<?php
 			}
 
 			if ( $display['read_only'] ) {
 				?>
-				<label for="frm_read_only_field_<?php echo esc_attr( $field['id'] ); ?>" class="frm_inline_label frm_help" title="<?php esc_attr_e( 'Read Only: Show this field but do not allow the field value to be edited from the front-end.', 'formidable' ); ?>" >
+				<label for="frm_read_only_field_<?php echo esc_attr( $field['id'] ); ?>" class="frm_inline_label">
 					<input type="checkbox" id="frm_read_only_field_<?php echo esc_attr( $field['id'] ); ?>" name="field_options[read_only_<?php echo esc_attr( $field['id'] ); ?>]" value="1" <?php checked( $field['read_only'], 1 ); ?>/>
 					<?php esc_html_e( 'Read Only', 'formidable' ); ?>
+					<span class="frm_help frm_icon_font frm_tooltip_icon" title="<?php esc_attr_e( 'Read Only: Show this field but do not allow the field value to be edited from the front-end.', 'formidable' ); ?>"></span>
 				</label>
 				<?php
 			}
@@ -68,8 +70,9 @@
 
 		<?php if ( $display['css'] ) { ?>
 			<p class="frm-has-modal">
-				<label for="frm_classes_<?php echo esc_attr( $field['id'] ); ?>" class="frm_help" title="<?php esc_attr_e( 'Add a CSS class to the field container. Use our predefined classes to align multiple fields in single row.', 'formidable' ); ?>">
+				<label for="frm_classes_<?php echo esc_attr( $field['id'] ); ?>">
 					<?php esc_html_e( 'CSS Layout Classes', 'formidable' ); ?>
+					<span class="frm_help frm_icon_font frm_tooltip_icon" title="<?php esc_attr_e( 'Add a CSS class to the field container. Use our predefined classes to align multiple fields in single row.', 'formidable' ); ?>"></span>
 				</label>
 				<span class="frm-with-right-icon">
 					<?php
@@ -213,8 +216,9 @@ do_action( 'frm_before_field_options', $field );
 
 		<?php if ( $display['captcha_size'] && $frm_settings->re_type !== 'invisible' ) { ?>
 			<p class="frm6 frm_first frm_form_field">
-				<label for="field_options_captcha_size_<?php echo esc_attr( $field['id'] ); ?>" class="frm_help" title="<?php esc_attr_e( 'Set the size of the captcha field. The compact option is best if your form is in a small area.', 'formidable' ); ?>">
+				<label for="field_options_captcha_size_<?php echo esc_attr( $field['id'] ); ?>">
 					<?php esc_html_e( 'ReCaptcha Type', 'formidable' ); ?>
+					<span class="frm_help frm_icon_font frm_tooltip_icon" title="<?php esc_attr_e( 'Set the size of the captcha field. The compact option is best if your form is in a small area.', 'formidable' ); ?>"></label>
 				</label>
 				<select name="field_options[captcha_size_<?php echo esc_attr( $field['id'] ); ?>]" id="field_options_captcha_size_<?php echo esc_attr( $field['id'] ); ?>">
 					<option value="normal" <?php selected( $field['captcha_size'], 'normal' ); ?>>
@@ -280,8 +284,9 @@ do_action( 'frm_before_field_options', $field );
 		<?php } ?>
 
 		<p class="frm6 frm_form_field">
-			<label for="field_options_field_key_<?php echo esc_attr( $field['id'] ); ?>" class="frm_help" title="<?php esc_attr_e( 'The field key can be used as an alternative to the field ID in many cases.', 'formidable' ); ?>">
+			<label for="field_options_field_key_<?php echo esc_attr( $field['id'] ); ?>">
 				<?php esc_html_e( 'Field Key', 'formidable' ); ?>
+				<span class="frm_help frm_icon_font frm_tooltip_icon" data-placement="right" title="<?php esc_attr_e( 'The field key can be used as an alternative to the field ID in many cases.', 'formidable' ); ?>"></span>
 			</label>
 			<input type="text" name="field_options[field_key_<?php echo esc_attr( $field['id'] ); ?>]" value="<?php echo esc_attr( $field['field_key'] ); ?>" id="field_options_field_key_<?php echo esc_attr( $field['id'] ); ?>"/>
 		</p>
@@ -294,7 +299,7 @@ do_action( 'frm_before_field_options', $field );
 				<select name="field_options[type_<?php echo esc_attr( $field['id'] ); ?>]" id="field_options_type_<?php echo esc_attr( $field['id'] ); ?>">
 					<?php foreach ( $field_types as $fkey => $ftype ) { ?>
 						<option value="<?php echo esc_attr( $fkey ); ?>" <?php echo ( $fkey === $field['type'] ) ? ' selected="selected"' : ''; ?> <?php echo array_key_exists( $fkey, $disabled_fields ) ? 'disabled="disabled"' : ''; ?>>
-							<?php echo esc_html( is_array( $ftype ) ? $ftype['name'] : $ftype ); ?> 
+							<?php echo esc_html( is_array( $ftype ) ? $ftype['name'] : $ftype ); ?>
 						</option>
 						<?php
 						unset( $fkey, $ftype );

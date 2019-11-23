@@ -6,6 +6,7 @@
 	--blue-border: rgb(188, 224, 253);
 	--darkest-grey: rgb(40, 47, 54);
 	--dark-grey: rgba(40, 47, 54, .85);
+	--dark-grey-opaque: rgba(72, 78, 84, 1);
 	--medium-grey: rgba(40, 47, 54, .65);
 	--grey: rgba(40, 47, 54, .45);
 	--grey-border: rgba(40, 47, 54, .2);
@@ -14,7 +15,7 @@
 	--sidebar-hover: rgb(227, 232, 235);
 	--primary-color: rgb(65, 153, 253);
 	--primary-hover: rgb(49, 119, 199);
-	--tooltip-background-color: var(--dark-grey);
+	--tooltip-background-color: var(--dark-grey-opaque);
 	--tooltip-font-size: 14px;
 	--green: rgb(63, 172, 37);
 	--orange: #F15A24;
@@ -4340,7 +4341,6 @@ a.frm_add_logic_link.frm_hidden {
 .frm_icon_font {
 	color: #A0A0A0;
 	color: var(--grey);
-	color: var(--primary-color);
 }
 
 .misc-pub-revisions.frm_icon_font,

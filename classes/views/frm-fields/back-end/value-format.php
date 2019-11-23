@@ -1,6 +1,7 @@
 <p class="frm-has-modal">
-	<label for="frm_format_<?php echo esc_attr( $field['field_key'] ); ?>" class="frm_help" title="<?php esc_attr_e( 'Insert the format you would like to accept. Use a regular expression starting with ^ or an exact format like (999)999-9999.', 'formidable' ); ?>">
+	<label for="frm_format_<?php echo esc_attr( $field['field_key'] ); ?>">
 		<?php esc_html_e( 'Format', 'formidable' ); ?>
+		<span class="frm_help frm_icon_font frm_tooltip_icon" data-placement="right" title="<?php esc_attr_e( 'Insert the format you would like to accept. Use a regular expression starting with ^ or an exact format like (999)999-9999.', 'formidable' ); ?>"></span>
 	</label>
 	<span class="frm-with-right-icon">
 		<?php

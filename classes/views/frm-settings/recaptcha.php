@@ -11,8 +11,9 @@
 
 <div class="frm_grid_container">
 <p class="frm6 frm_form_field">
-	<label class="frm_help" for="frm_pubkey" title="<?php esc_attr_e( 'reCAPTCHA is a free, accessible CAPTCHA service that helps to digitize books while blocking spam on your blog. reCAPTCHA asks commenters to retype two words scanned from a book to prove that they are a human. This verifies that they are not a spambot.', 'formidable' ); ?>">
+	<label for="frm_pubkey">
 		<?php esc_html_e( 'Site Key', 'formidable' ); ?>
+		<span class="frm_help frm_icon_font frm_tooltip_icon" title="<?php esc_attr_e( 'reCAPTCHA is a free, accessible CAPTCHA service that helps to digitize books while blocking spam on your blog. reCAPTCHA asks commenters to retype two words scanned from a book to prove that they are a human. This verifies that they are not a spambot.', 'formidable' ); ?>"></span>
 	</label>
 	<input type="text" name="frm_pubkey" id="frm_pubkey" size="42"
 		value="<?php echo esc_attr( $frm_settings->pubkey ); ?>"

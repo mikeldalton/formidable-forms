@@ -56,8 +56,9 @@
 			</p>
 
 			<p class="frm_hidden csv_opts export-filters frm4 frm_form_field">
-				<label for="csv_format" class="frm_help" title="<?php esc_attr_e( 'If your CSV special characters are not working correctly, try a different formatting option.', 'formidable' ); ?>">
+				<label for="csv_format">
 					<?php esc_html_e( 'CSV Encoding Format', 'formidable' ); ?>
+					<span class="frm_help frm_icon_font frm_tooltip_icon" title="<?php esc_attr_e( 'If your CSV special characters are not working correctly, try a different formatting option.', 'formidable' ); ?>"></span>
 				</label>
 				<select name="csv_format">
 					<?php foreach ( FrmCSVExportHelper::csv_format_options() as $format ) { ?>
