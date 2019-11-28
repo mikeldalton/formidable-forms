@@ -488,7 +488,7 @@ function frmAdminBuildJS() {
 			jQuery( this ).tooltip( 'show' );
 		} );
 
-		jQuery( '.frm_bstooltip, .frm_help' ).tooltip( );
+		jQuery( '.frm_bstooltip, .frm_help' ).tooltip(  );
 	}
 
 	function removeThisTag() {

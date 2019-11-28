@@ -3,10 +3,13 @@
 
 <div class="frm_grid_container frm_no_p_margin">
 	<p class="frm6 frm_form_field">
-		<label for="<?php echo esc_attr( $action_control->get_field_id( 'action_post_title' ) ); ?>" <?php FrmAppHelper::maybe_add_tooltip( 'action_title' ); ?>>
+		<label for="<?php echo esc_attr( $action_control->get_field_id( 'action_post_title' ) ); ?>">
 			<?php esc_html_e( 'Action Name', 'formidable' ); ?>
+			<?php
+			FrmAppHelper::maybe_add_tooltip( 'action_title' );
+			?>
 		</label>
-		<input type="text" name="<?php echo esc_attr( $action_control->get_field_name( 'post_title', '' ) ); ?>" value="<?php echo esc_attr( $form_action->post_title ); ?>" class="large-text <?php FrmAppHelper::maybe_add_tooltip( 'action_title', 'open' ); ?>" id="<?php echo esc_attr( $action_control->get_field_id( 'action_post_title' ) ); ?>" />
+		<input type="text" name="<?php echo esc_attr( $action_control->get_field_name( 'post_title', '' ) ); ?>" value="<?php echo esc_attr( $form_action->post_title ); ?>" class="large-text" id="<?php echo esc_attr( $action_control->get_field_id( 'action_post_title' ) ); ?>" />
 	</p>
 <?php
 

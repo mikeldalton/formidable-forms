@@ -1936,17 +1936,20 @@ class FrmAppHelper {
 			return;
 		}
 
-		if ( 'open' == $class ) {
-			echo ' frm_help"';
-		} else {
-			echo ' class="frm_help"';
-		}
+//		if ( 'open' == $class ) {
+//			echo ' frm_help"';
+//		} else {
+//			echo ' class="frm_help"';
+//		}
 
-		echo ' title="' . esc_attr( $tooltips[ $name ] );
+		//echo ' title="' . esc_attr( $tooltips[ $name ] );
 
-		if ( 'open' != $class ) {
-			echo '"';
-		}
+		echo '<span class="frm_help frm_icon_font frm_tooltip_icon" title="'. esc_attr( $tooltips[ $name ] ). '"></span>';
+		//echo '<span class="frm_help frm_icon_font frm_tooltip_icon" title="You are awesome!"></span>';
+
+//		if ( 'open' != $class ) {
+//			echo '"';
+//		}
 	}
 
 	/**
