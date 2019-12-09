@@ -1944,7 +1944,7 @@ class FrmAppHelper {
 
 		//echo ' title="' . esc_attr( $tooltips[ $name ] );
 
-		echo '<span class="frm_help frm_icon_font frm_tooltip_icon" title="'. esc_attr( $tooltips[ $name ] ). '"></span>';
+		echo '<span class="frm_help frm_icon_font frm_tooltip_icon" data-placement="right" title="'. esc_attr( $tooltips[ $name ] ). '"></span>';
 		//echo '<span class="frm_help frm_icon_font frm_tooltip_icon" title="You are awesome!"></span>';
 
 //		if ( 'open' != $class ) {

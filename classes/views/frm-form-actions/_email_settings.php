@@ -1,8 +1,9 @@
 <p class="frm_has_shortcodes frm_to_row frm_email_row">
-	<label for="<?php echo esc_attr( $this->get_field_id( 'email_to' ) ); ?>" <?php FrmAppHelper::maybe_add_tooltip( 'email_to' ); ?>>
+	<label for="<?php echo esc_attr( $this->get_field_id( 'email_to' ) ); ?>">
 		<?php esc_html_e( 'To', 'formidable' ); ?>
+		<?php FrmAppHelper::maybe_add_tooltip( 'email_to' );?>
 	</label>
-	<input type="text" name="<?php echo esc_attr( $this->get_field_name( 'email_to' ) ); ?>" value="<?php echo esc_attr( $form_action->post_content['email_to'] ); ?>" class="frm_not_email_to frm_email_blur large-text <?php FrmAppHelper::maybe_add_tooltip( 'email_to', 'open' ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'email_to' ) ); ?>" />
+	<input type="text" name="<?php echo esc_attr( $this->get_field_name( 'email_to' ) ); ?>" value="<?php echo esc_attr( $form_action->post_content['email_to'] ); ?>" class="frm_not_email_to frm_email_blur large-text" id="<?php echo esc_attr( $this->get_field_id( 'email_to' ) ); ?>" />
 </p>
 
 <p class="frm_bcc_cc_container">
@@ -15,29 +16,32 @@
 </p>
 
 <p class="frm_has_shortcodes frm_cc_row frm_email_row<?php echo empty( $form_action->post_content['cc'] ) ? ' frm_hidden' : ''; ?>" >
-	<label for="<?php echo esc_attr( $this->get_field_id( 'cc' ) ); ?>" <?php FrmAppHelper::maybe_add_tooltip( 'cc' ); ?>>
+	<label for="<?php echo esc_attr( $this->get_field_id( 'cc' ) ); ?>">
 		<?php esc_html_e( 'CC', 'formidable' ); ?>
 		<a href="javascript:void(0)" class="frm_icon_font frm_remove_field frm_cancel1_icon" data-emailrow="cc"></a>
+		<?php FrmAppHelper::maybe_add_tooltip( 'cc' );?>
 	</label>
 
-	<input type="text" name="<?php echo esc_attr( $this->get_field_name( 'cc' ) ); ?>" value="<?php echo esc_attr( $form_action->post_content['cc'] ); ?>" class="frm_not_email_to large-text <?php FrmAppHelper::maybe_add_tooltip( 'cc', 'open' ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'cc' ) ); ?>" />
+	<input type="text" name="<?php echo esc_attr( $this->get_field_name( 'cc' ) ); ?>" value="<?php echo esc_attr( $form_action->post_content['cc'] ); ?>" class="frm_not_email_to large-text" id="<?php echo esc_attr( $this->get_field_id( 'cc' ) ); ?>" />
 </p>
 
 <p class="frm_has_shortcodes frm_bcc_row frm_email_row<?php echo empty( $form_action->post_content['bcc'] ) ? ' frm_hidden' : ''; ?>" >
-	<label for="<?php echo esc_attr( $this->get_field_id( 'bcc' ) ); ?>" <?php FrmAppHelper::maybe_add_tooltip( 'bcc' ); ?>>
+	<label for="<?php echo esc_attr( $this->get_field_id( 'bcc' ) ); ?>">
 		<?php esc_html_e( 'BCC', 'formidable' ); ?>
 		<a href="javascript:void(0)" class="frm_icon_font frm_remove_field frm_cancel1_icon" data-emailrow="bcc"></a>
+		<?php FrmAppHelper::maybe_add_tooltip( 'bcc' );?>
 	</label>
 
-	<input type="text" name="<?php echo esc_attr( $this->get_field_name( 'bcc' ) ); ?>" value="<?php echo esc_attr( $form_action->post_content['bcc'] ); ?>" class="frm_not_email_to large-text <?php FrmAppHelper::maybe_add_tooltip( 'bcc', 'open' ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'bcc' ) ); ?>" />
+	<input type="text" name="<?php echo esc_attr( $this->get_field_name( 'bcc' ) ); ?>" value="<?php echo esc_attr( $form_action->post_content['bcc'] ); ?>" class="frm_not_email_to large-text" id="<?php echo esc_attr( $this->get_field_id( 'bcc' ) ); ?>" />
 </p>
 
 <p class="frm_has_shortcodes frm_from_row frm_email_row">
-	<label for="<?php echo esc_attr( $this->get_field_id( 'from' ) ); ?>" <?php FrmAppHelper::maybe_add_tooltip( 'from' ); ?>>
+	<label for="<?php echo esc_attr( $this->get_field_id( 'from' ) ); ?>">
 		<?php esc_html_e( 'From', 'formidable' ); ?>
+		<?php FrmAppHelper::maybe_add_tooltip( 'from' );?>
 	</label>
 
-	<input type="text" name="<?php echo esc_attr( $this->get_field_name( 'from' ) ); ?>" value="<?php echo esc_attr( $form_action->post_content['from'] ); ?>" class="frm_not_email_to frm_email_blur large-text <?php FrmAppHelper::maybe_add_tooltip( 'from', 'open' ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'from' ) ); ?>" />
+	<input type="text" name="<?php echo esc_attr( $this->get_field_name( 'from' ) ); ?>" value="<?php echo esc_attr( $form_action->post_content['from'] ); ?>" class="frm_not_email_to frm_email_blur large-text" id="<?php echo esc_attr( $this->get_field_id( 'from' ) ); ?>" />
 </p>
 
 <p class="frm_reply_to_container">
@@ -47,19 +51,21 @@
 </p>
 
 <p class="frm_has_shortcodes frm_reply_to_row frm_email_row<?php echo empty( $form_action->post_content['reply_to'] ) ? ' frm_hidden' : ''; ?>">
-	<label for="<?php echo esc_attr( $this->get_field_id( 'reply_to' ) ); ?>" <?php FrmAppHelper::maybe_add_tooltip( 'reply_to' ); ?>>
+	<label for="<?php echo esc_attr( $this->get_field_id( 'reply_to' ) ); ?>">
 		<?php esc_html_e( 'Reply To', 'formidable' ); ?>
 		<a href="javascript:void(0)" class="frm_icon_font frm_remove_field frm_cancel1_icon" data-emailrow="reply_to"></a>
+		<?php FrmAppHelper::maybe_add_tooltip( 'reply_to' );?>
 	</label>
 
-	<input type="text" name="<?php echo esc_attr( $this->get_field_name( 'reply_to' ) ); ?>" value="<?php echo esc_attr( $form_action->post_content['reply_to'] ); ?>" class="frm_not_email_to large-text <?php FrmAppHelper::maybe_add_tooltip( 'reply_to', 'open' ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'reply_to' ) ); ?>" />
+	<input type="text" name="<?php echo esc_attr( $this->get_field_name( 'reply_to' ) ); ?>" value="<?php echo esc_attr( $form_action->post_content['reply_to'] ); ?>" class="frm_not_email_to large-text" id="<?php echo esc_attr( $this->get_field_id( 'reply_to' ) ); ?>" />
 </p>
 
 <p class="frm_has_shortcodes">
-	<label for="<?php echo esc_attr( $this->get_field_id( 'email_subject' ) ); ?>" <?php FrmAppHelper::maybe_add_tooltip( 'email_subject', '', $form->name ); ?>>
+	<label for="<?php echo esc_attr( $this->get_field_id( 'email_subject' ) ); ?>">
 		<?php esc_html_e( 'Subject', 'formidable' ); ?>
+		<?php FrmAppHelper::maybe_add_tooltip( 'email_subject', '', $form->name ); ?>
 	</label>
-	<input type="text" name="<?php echo esc_attr( $this->get_field_name( 'email_subject' ) ); ?>" class="frm_not_email_subject large-text <?php FrmAppHelper::maybe_add_tooltip( 'email_subject', 'open', $form->name ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'email_subject' ) ); ?>" value="<?php echo esc_attr( $form_action->post_content['email_subject'] ); ?>" />
+	<input type="text" name="<?php echo esc_attr( $this->get_field_name( 'email_subject' ) ); ?>" class="frm_not_email_subject large-text" id="<?php echo esc_attr( $this->get_field_id( 'email_subject' ) ); ?>" value="<?php echo esc_attr( $form_action->post_content['email_subject'] ); ?>" />
 </p>
 
 <p class="frm_has_shortcodes">
