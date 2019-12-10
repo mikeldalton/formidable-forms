@@ -132,7 +132,11 @@ class FrmFormsController {
 
 		$message = __( 'Settings Successfully Updated', 'formidable' );
 
-		return self::get_settings_vars( $id, array(), $message );
+		// TODO Laura -- check if need a warning
+
+		$warnings = FrmForm::check_for_warnings( $_POST );
+
+		return self::get_settings_vars( $id, array(), $message, $warnings );
 	}
 
 	public static function update( $values = array() ) {
@@ -159,6 +163,10 @@ class FrmFormsController {
 			FrmForm::update( $id, $values );
 			$message = __( 'Form was successfully updated.', 'formidable' );
 
+			//TODO Laura -- add warnings here
+
+			$warnings = FrmForm::check_for_warnings( $values );
+
 			if ( self::is_too_long( $values ) ) {
 				$message .= '<br/> ' . sprintf(
 					/* translators: %1$s: Start link HTML, %2$s: end link HTML */
@@ -168,11 +176,13 @@ class FrmFormsController {
 				);
 			}
 
+			// TODO Laura -- add warnings here
+
 			if ( defined( 'DOING_AJAX' ) ) {
 				wp_die( FrmAppHelper::kses( $message, array( 'a' ) ) ); // WPCS: XSS ok.
 			}
 
-			return self::get_edit_vars( $id, array(), $message );
+			return self::get_edit_vars( $id, array(), $message, $warnings );
 		}
 	}
 
@@ -897,7 +907,7 @@ class FrmFormsController {
 		}
 	}
 
-	public static function get_settings_vars( $id, $errors = array(), $message = '' ) {
+	public static function get_settings_vars( $id, $errors = array(), $message = '', $warnings = array() ) {
 		FrmAppHelper::permission_check( 'frm_edit_forms' );
 
 		global $frm_vars;

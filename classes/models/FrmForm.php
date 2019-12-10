@@ -714,6 +714,19 @@ class FrmForm {
 		return apply_filters( 'frm_validate_form', $errors, $values );
 	}
 
+
+	/**
+	 * @return array of warnings
+	 */
+	public static function check_for_warnings( $values ) {
+		//TODO Laura -- add warnings check here
+		$warnings = array();
+
+		$warnings = array( 'too big', 'too small');
+
+		return apply_filters( 'frm_check_for_warnings', $warnings, $values );
+	}
+
 	public static function get_params( $form = null ) {
 		global $frm_vars;
 

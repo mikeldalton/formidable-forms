@@ -9,6 +9,22 @@ if ( isset( $message ) && '' !== $message ) {
 	}
 }
 
+$warnings = array('yes', 'no');
+
+if ( isset( $warnings ) && is_array( $warnings ) && count( $warnings ) > 0 ) {
+	?>
+	<div class="frm_warning_style inline" role="alert">
+		<ul id="frm_warnings">
+			<?php
+			foreach ( $warnings as $warning ) {
+				echo '<li>' . FrmAppHelper::kses( $warning, array( 'a', 'br' ) ) . '</li>'; // WPCS: XSS ok.
+			}
+			?>
+		</ul>
+	</div>
+	<?php
+}
+
 if ( isset( $errors ) && is_array( $errors ) && count( $errors ) > 0 ) {
 	?>
 	<div class="frm_error_style inline" role="alert">

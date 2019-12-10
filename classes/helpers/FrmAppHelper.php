@@ -2202,6 +2202,7 @@ class FrmAppHelper {
 				'pro_url'           => is_callable( 'FrmProAppHelper::plugin_url' ) ? FrmProAppHelper::plugin_url() : '',
 				'no_licenses'       => __( 'No new licenses were found', 'formidable' ),
 				'unmatched_parens'  => __( 'This calculation has at least one unmatched ( ) { } [ ].', 'formidable' ),
+				'unsafe_params'     => is_callable( 'FrmProContent::list_of_unsafe_params' ) ? FrmProContent::list_of_unsafe_params() : array(),
 				'view_shortcodes'   => __( 'This calculation may have shortcodes that work in Views but not forms.', 'formidable' ),
 				'text_shortcodes'   => __( 'This calculation may have shortcodes that work in text calculations but not numeric calculations.', 'formidable' ),
 				'repeat_limit_min'  => __( 'Please enter a Repeat Limit that is greater than 1.', 'formidable' ),
