@@ -722,7 +722,8 @@ class FrmForm {
 		//TODO Laura -- add warnings check here
 		$warnings = array();
 
-		$warnings = array( 'too big', 'too small');
+		//$warnings = array( 'too big', 'too small');
+
 
 		return apply_filters( 'frm_check_for_warnings', $warnings, $values );
 	}

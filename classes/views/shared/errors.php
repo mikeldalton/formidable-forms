@@ -9,7 +9,7 @@ if ( isset( $message ) && '' !== $message ) {
 	}
 }
 
-$warnings = array('yes', 'no');
+//$warnings = array('yes', 'no');
 
 if ( isset( $warnings ) && is_array( $warnings ) && count( $warnings ) > 0 ) {
 	?>

@@ -122,8 +122,10 @@ class FrmFormsController {
 		$id = FrmAppHelper::get_param( 'id', '', 'get', 'absint' );
 
 		$errors = FrmForm::validate( $_POST );
+		$warnings = FrmForm::check_for_warnings( $_POST );
+
 		if ( count( $errors ) > 0 ) {
-			return self::get_settings_vars( $id, $errors );
+			return self::get_settings_vars( $id, $errors, $warnings );
 		}
 
 		do_action( 'frm_before_update_form_settings', $id );
@@ -131,10 +133,6 @@ class FrmFormsController {
 		FrmForm::update( $id, $_POST );
 
 		$message = __( 'Settings Successfully Updated', 'formidable' );
-
-		// TODO Laura -- check if need a warning
-
-		$warnings = FrmForm::check_for_warnings( $_POST );
 
 		return self::get_settings_vars( $id, array(), $message, $warnings );
 	}
