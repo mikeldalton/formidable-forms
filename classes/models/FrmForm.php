@@ -719,13 +719,82 @@ class FrmForm {
 	 * @return array of warnings
 	 */
 	public static function check_for_warnings( $values ) {
-		//TODO Laura -- add warnings check here
 		$warnings = array();
 
-		//$warnings = array( 'too big', 'too small');
+		$redirect_warning = self::check_redirect_url_for_unsafe_params( $values );
 
+		if ( $redirect_warning ){
+			$warnings[] = $redirect_warning;
+		}
 
 		return apply_filters( 'frm_check_for_warnings', $warnings, $values );
+	}
+
+	private static function check_redirect_url_for_unsafe_params( $values ) {
+		if ( ! isset( $values['options'] ) ) {
+			return false;
+		}
+
+		$options = $values['options'];
+
+		if ( ( ! isset ( $options['success_action'] ) ) || $options['success_action'] !== 'redirect' || ! isset( $options['success_url'] ) ) {
+			return false;
+		}
+
+		$redirect_components = parse_url( $options['success_url'] );
+		parse_str( $redirect_components['query'], $redirect_params );
+		$redirect_param_names            = array_keys( $redirect_params );
+		$unsafe_params                   = self::list_of_unsafe_params();
+		$unsafe_params_in_redirect_array = array_intersect( $redirect_param_names, $unsafe_params );
+
+		if ( count( $unsafe_params_in_redirect_array ) >= 1 ) {
+			$unsafe_params_in_redirect_string = implode( ', ', $unsafe_params_in_redirect_array );
+			// TODO Laura -- improve message
+			$warning_message = sprintf( esc_html__( 'At least one of the param names in your redirect URL is a reserved word.  Using reserved words as param names can cause problems and is not recommended unless you are an expert. ', 'formidable' ) );
+			/* translators: %s: List of reserved words in the redirect URL */
+			$warning_message .= sprintf( esc_html__( 'The following param names are reserved words: %s. ', 'formidable' ), $unsafe_params_in_redirect_string );
+
+			return $warning_message;
+		}
+
+		return false;
+	}
+
+	public static function list_of_unsafe_params() {
+		return array(
+			'id',
+			'date',
+			'author',
+			'author_name',
+			'calendar',
+			'cat',
+			'category',
+			'custom',
+			'day',
+			'feed',
+			'hour',
+			'm',
+			'minute',
+			'more',
+			'name',
+			'order',
+			'p',
+			'page',
+			'post',
+			's',
+			'search',
+			'second',
+			'sentence',
+			'tag',
+			'taxonomy',
+			'term',
+			'terms',
+			'theme',
+			'title',
+			'type',
+			'w',
+			'year'
+		);
 	}
 
 	public static function get_params( $form = null ) {

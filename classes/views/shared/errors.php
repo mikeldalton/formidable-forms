@@ -14,6 +14,7 @@ if ( isset( $message ) && '' !== $message ) {
 if ( isset( $warnings ) && is_array( $warnings ) && count( $warnings ) > 0 ) {
 	?>
 	<div class="frm_warning_style inline" role="alert">
+		<strong> <?php echo esc_html__('WARNING', 'formidable'); ?></strong>
 		<ul id="frm_warnings">
 			<?php
 			foreach ( $warnings as $warning ) {

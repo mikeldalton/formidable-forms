@@ -161,8 +161,6 @@ class FrmFormsController {
 			FrmForm::update( $id, $values );
 			$message = __( 'Form was successfully updated.', 'formidable' );
 
-			//TODO Laura -- add warnings here
-
 			$warnings = FrmForm::check_for_warnings( $values );
 
 			if ( self::is_too_long( $values ) ) {

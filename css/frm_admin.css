@@ -14,9 +14,9 @@
 	--sidebar-hover: rgb(227, 232, 235);
 	--primary-color: rgb(65, 153, 253);
 	--primary-hover: rgb(49, 119, 199);
-	--warning-color: black;
-	--warning-background-color: yellow;
-	--warning-border-color: blue;
+	--warning-color: #4c4c40;
+	--warning-background-color: #ffffd7;
+	--warning-border-color: #e6e6c2;
 	--green: rgb(63, 172, 37);
 	--orange: #F15A24;
 	--pink: rgb(226, 42, 110);
@@ -1533,7 +1533,7 @@ div.frm_updated_message {
 
 .frm_warning_style {
 	color: var(--warning-color);
-	border-color: var(--warning-border-color);
+	/*border-color: var(--warning-border-color);*/
 	background-color: var(--warning-background-color);
 }
 

@@ -1211,6 +1211,37 @@ function frmAdminBuildJS() {
 		}
 	}
 
+	function checkDetailPageSlug() {
+		var slug = jQuery( '#param' ).val(),
+			msg;
+		slug = slug.trim().toLowerCase();
+		if ( Array.isArray( frm_admin_js.unsafe_params ) && frm_admin_js.unsafe_params.includes( slug ) ) {
+			msg = frm_admin_js.slug_is_reserved;
+			alert( msg );
+		}
+	}
+
+	function checkFilterParamNames() {
+		var regEx = /\[\s*get\s*param\s*=\s*['"]?([a-zA-Z-_]+)['"]?/ig,
+			filterValue = jQuery( this ).val(),
+			match = regEx.exec( filterValue ),
+			unsafeParams = '';
+
+		while ( match != null ) {
+			if ( Array.isArray( frm_admin_js.unsafe_params ) && frm_admin_js.unsafe_params.includes( match[ 1 ] ) ) {
+				if ( unsafeParams !== '' ) {
+					unsafeParams += ', ' + match[ 1 ];
+				} else {
+					unsafeParams = match[ 1 ];
+				}
+			}
+			match = regEx.exec( filterValue );
+		}
+		console.log( 'Unsafe params are ' + unsafeParams );
+		// TODO Laura -- add message text
+		console.log( 'Filter value changed!' );
+	}
+
 	/**
 	 * Checks a string for parens, brackets, and curly braces and returns a message if any unmatched are found.
 	 * @param formula
@@ -5045,6 +5076,7 @@ function frmAdminBuildJS() {
 			jQuery( document.getElementById( 'frm-insert-fields' ) ).on( 'click', '.frm_add_field', addFieldClick );
 			$newFields.on( 'click', '.frm_clone_field', duplicateField );
 			$builderForm.on( 'blur', 'input[id^="frm_calc"]', checkCalculationCreatedByUser );
+
 			$builderForm.on( 'change', 'input.frm_format_opt', toggleInvalidMsg );
 			$builderForm.on( 'change click', '[data-changeme]', liveChanges );
 			$builderForm.on( 'click', 'input.frm_req_field', markRequired );
@@ -5309,6 +5341,9 @@ function frmAdminBuildJS() {
 			var $advInfo = jQuery( document.getElementById( 'frm_adv_info' ) );
 			$advInfo.before( '<div id="frm_position_ele"></div>' );
 			setupMenuOffset();
+
+			jQuery( document ).on( 'blur', '#param', checkDetailPageSlug );
+			jQuery( document ).on( 'blur', 'input[name^="options[where_val]"]', checkFilterParamNames );
 
 			// Show loading indicator.
 			jQuery( '#publish' ).mousedown( function() {
