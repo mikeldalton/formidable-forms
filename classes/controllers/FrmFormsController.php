@@ -148,6 +148,8 @@ class FrmFormsController {
 		}
 
 		$errors           = FrmForm::validate( $values );
+		$warnings = FrmForm::check_for_warnings( $values );
+
 		$permission_error = FrmAppHelper::permission_nonce_error( 'frm_edit_forms', 'frm_save_form', 'frm_save_form_nonce' );
 		if ( $permission_error !== false ) {
 			$errors['form'] = $permission_error;
@@ -156,12 +158,10 @@ class FrmFormsController {
 		$id = isset( $values['id'] ) ? absint( $values['id'] ) : FrmAppHelper::get_param( 'id', '', 'get', 'absint' );
 
 		if ( count( $errors ) > 0 ) {
-			return self::get_edit_vars( $id, $errors );
+			return self::get_edit_vars( $id, $errors, $warnings );
 		} else {
 			FrmForm::update( $id, $values );
 			$message = __( 'Form was successfully updated.', 'formidable' );
-
-			$warnings = FrmForm::check_for_warnings( $values );
 
 			if ( self::is_too_long( $values ) ) {
 				$message .= '<br/> ' . sprintf(
@@ -171,8 +171,6 @@ class FrmFormsController {
 					'</a>'
 				);
 			}
-
-			// TODO Laura -- add warnings here
 
 			if ( defined( 'DOING_AJAX' ) ) {
 				wp_die( FrmAppHelper::kses( $message, array( 'a' ) ) ); // WPCS: XSS ok.

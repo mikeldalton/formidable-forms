@@ -749,10 +749,8 @@ class FrmForm {
 
 		if ( count( $unsafe_params_in_redirect_array ) >= 1 ) {
 			$unsafe_params_in_redirect_string = implode( ', ', $unsafe_params_in_redirect_array );
-			// TODO Laura -- improve message
-			$warning_message = sprintf( esc_html__( 'At least one of the param names in your redirect URL is a reserved word.  Using reserved words as param names can cause problems and is not recommended unless you are an expert. ', 'formidable' ) );
 			/* translators: %s: List of reserved words in the redirect URL */
-			$warning_message .= sprintf( esc_html__( 'The following param names are reserved words: %s. ', 'formidable' ), $unsafe_params_in_redirect_string );
+			$warning_message = sprintf( esc_html__( 'The following param names are reserved words: $s.  Using reserved words as param names can cause problems and is not recommended unless you are an expert. ', 'formidable' ), $unsafe_params_in_redirect_string );
 
 			return $warning_message;
 		}

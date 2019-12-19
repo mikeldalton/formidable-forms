@@ -1237,9 +1237,11 @@ function frmAdminBuildJS() {
 			}
 			match = regEx.exec( filterValue );
 		}
-		console.log( 'Unsafe params are ' + unsafeParams );
-		// TODO Laura -- add message text
-		console.log( 'Filter value changed!' );
+
+		if ( unsafeParams !== '' ){
+			msg = frm_admin_js.param_is_reserved + ' ' + unsafeParams;
+			alert( msg );
+		}
 	}
 
 	/**
