@@ -1533,8 +1533,9 @@ div.frm_updated_message {
 
 .frm_warning_style {
 	color: var(--warning-color);
-	/*border-color: var(--warning-border-color);*/
+	border-color: var(--warning-border-color);
 	background-color: var(--warning-background-color);
+	padding-top: 15px
 }
 
 .frm_updated_message ul,

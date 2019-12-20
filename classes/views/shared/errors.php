@@ -9,8 +9,6 @@ if ( isset( $message ) && '' !== $message ) {
 	}
 }
 
-//$warnings = array('yes', 'no');
-
 if ( isset( $warnings ) && is_array( $warnings ) && count( $warnings ) > 0 ) {
 	?>
 	<div class="frm_warning_style inline" role="alert">

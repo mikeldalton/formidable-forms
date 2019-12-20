@@ -122,7 +122,7 @@ class FrmFormsController {
 		$id = FrmAppHelper::get_param( 'id', '', 'get', 'absint' );
 
 		$errors = FrmForm::validate( $_POST );
-		$warnings = FrmForm::check_for_warnings( $_POST );
+		$warnings = self::check_for_warnings( $_POST );
 
 		if ( count( $errors ) > 0 ) {
 			return self::get_settings_vars( $id, $errors, $warnings );
@@ -137,6 +137,93 @@ class FrmFormsController {
 		return self::get_settings_vars( $id, array(), $message, $warnings );
 	}
 
+
+	/**
+	 * Checks for warnings to be displayed after form settings are saved.
+	 *
+	 * @param array $values The $_POST array, which contains values submitted in a form.
+	 *
+	 * @return array An array of warnings or an empty array.
+	 */
+	public static function check_for_warnings( $values ) {
+		$warnings = array();
+
+		$redirect_warning = self::check_redirect_url_for_unsafe_params( $values );
+
+		if ( $redirect_warning ){
+			$warnings[] = $redirect_warning;
+		}
+
+		return apply_filters( 'frm_check_for_warnings', $warnings, $values );
+	}
+
+	/**
+	 * Checks the redirect URL for params whose names are reserved words.
+	 *
+	 * @param array $values The $_POST array, which contains the values submitted in a form.
+	 *
+	 * @return bool|string A warning message about unsafe params or false.
+	 */
+	private static function check_redirect_url_for_unsafe_params( $values ) {
+		if ( ! isset( $values['options'] ) ) {
+			return false;
+		}
+
+		$options = $values['options'];
+
+		if ( ( ! isset ( $options['success_action'] ) ) || $options['success_action'] !== 'redirect' || ! isset( $options['success_url'] ) ) {
+			return false;
+		}
+
+		$unsafe_params_in_redirect = self::get_unsafe_params( $options['success_url'] );
+		return self::create_unsafe_param_warning( $unsafe_params_in_redirect );
+	}
+
+	/**
+	 * Returns an array of params whose names are reserved words in the specified URL.
+	 *
+	 * @param string $url The URL whose params are being checked.
+	 *
+	 * @return array An array of params whose names are reserved words or an empty array.
+	 */
+	private static function get_unsafe_params( $url ) {
+		$redirect_components = parse_url( $url );
+		parse_str( $redirect_components['query'], $redirect_params );
+		$redirect_param_names      = array_keys( $redirect_params );
+		$reserved_words            = FrmForm::reserved_words();
+		$unsafe_params_in_redirect = array_intersect( $redirect_param_names, $reserved_words );
+
+		return array_values( $unsafe_params_in_redirect );
+	}
+
+	/**
+	 * Returns a warning if reserved words have been used as param names in the redirect URL.
+	 *
+	 * @param array $unsafe_params_in_redirect Array of params from the redirect URL whose names are reserved words.
+	 *
+	 * @return bool|string A string with an unsafe param message or false.
+	 */
+	private static function create_unsafe_param_warning( $unsafe_params_in_redirect ) {
+		$count = count( $unsafe_params_in_redirect );
+		$caution= esc_html__( 'Using reserved words as param names in a URL can cause problems and is not recommended unless you are an expert. ', 'formidable' );
+
+		if ( $count === 0 ) {
+			return false;
+		}
+
+		if ( $count == 1 ) {
+			/* translators: %s: the name of a param in the redirect URL */
+			return sprintf( esc_html__( 'Your redirect has a param %s, which is a reserved word. ', 'formidable' ), $unsafe_params_in_redirect[0] ) . $caution;
+		}
+
+		$unsafe_params_in_redirect[ $count - 1 ] = 'and ' . $unsafe_params_in_redirect[ $count - 1 ];
+		$connector                               = $count > 2 ? ', ' : ' ';
+		$unsafe_params_string                    = implode( $connector, $unsafe_params_in_redirect );
+
+		/* translators: %s: the names of params in the redirect URL */
+		return sprintf( esc_html__( 'Your redirect has params %s, which are reserved words. ', 'formidable' ), $unsafe_params_string ) . $caution;
+	}
+
 	public static function update( $values = array() ) {
 		if ( empty( $values ) ) {
 			$values = $_POST;
@@ -148,7 +235,6 @@ class FrmFormsController {
 		}
 
 		$errors           = FrmForm::validate( $values );
-		$warnings = FrmForm::check_for_warnings( $values );
 
 		$permission_error = FrmAppHelper::permission_nonce_error( 'frm_edit_forms', 'frm_save_form', 'frm_save_form_nonce' );
 		if ( $permission_error !== false ) {
@@ -158,7 +244,7 @@ class FrmFormsController {
 		$id = isset( $values['id'] ) ? absint( $values['id'] ) : FrmAppHelper::get_param( 'id', '', 'get', 'absint' );
 
 		if ( count( $errors ) > 0 ) {
-			return self::get_edit_vars( $id, $errors, $warnings );
+			return self::get_edit_vars( $id, $errors );
 		} else {
 			FrmForm::update( $id, $values );
 			$message = __( 'Form was successfully updated.', 'formidable' );
@@ -176,7 +262,7 @@ class FrmFormsController {
 				wp_die( FrmAppHelper::kses( $message, array( 'a' ) ) ); // WPCS: XSS ok.
 			}
 
-			return self::get_edit_vars( $id, array(), $message, $warnings );
+			return self::get_edit_vars( $id, array(), $message );
 		}
 	}
 
