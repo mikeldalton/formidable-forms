@@ -682,6 +682,7 @@ removeMore,
 		if ( auto !== 'auto' ) {
 			// Hide success message on tab change.
 			jQuery( '.frm_updated_message' ).hide();
+			jQuery('.frm_warning_style').hide();
 		}
 
 		if ( jQuery( link ).closest( '#frm_adv_info' ).length ) {
