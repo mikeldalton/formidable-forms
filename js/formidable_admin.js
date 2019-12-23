@@ -369,6 +369,19 @@ function frmAdminBuildJS() {
 		return false;
 	}
 
+	function confirmInfo( msg ) {
+		var $info = initModal( '#frm_confirm_modal', '400px' );
+
+		if ( $info === false ) {
+			return false;
+		}
+
+		jQuery( '.frm-confirm-msg' ).html( msg );
+
+		$info.dialog( 'open' );
+		return false;
+	}
+
 	function toggleItem( e ) {
 		/*jshint validthis:true */
 		var toggle = this.getAttribute( 'data-frmtoggle' ),
@@ -1223,7 +1236,7 @@ removeMore,
 		slug = slug.trim().toLowerCase();
 		if ( Array.isArray( frm_admin_js.unsafe_params ) && frm_admin_js.unsafe_params.includes( slug ) ) {
 			msg = frm_admin_js.slug_is_reserved;
-			alert( msg );
+			confirmInfo( msg );
 		}
 	}
 
@@ -1250,9 +1263,9 @@ removeMore,
 		if ( unsafeParams !== '' ) {
 			msg = frm_admin_js.param_is_reserved;
 			msg += '\n\n' + unsafeParams + '\n\n';
-			msg += frm_admin_js.reserved_param_danger;
+			msg += frm_admin_js.reserved_danger;
 
-			alert( msg );
+			confirmInfo( msg );
 		}
 	}
 
