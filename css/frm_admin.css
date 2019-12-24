@@ -596,8 +596,10 @@ p.frm_has_shortcodes {
 	text-align: center;
 }
 
+#frm_info_modal .dismiss .frmsvg,
 #frm_confirm_modal .dismiss .frmsvg,
 #frm_upgrade_modal .dismiss .frmsvg,
+#frm_info_modal .dismiss i,
 #frm_confirm_modal .dismiss i,
 #frm_upgrade_modal .dismiss i {
 	top: 7px;

@@ -370,7 +370,7 @@ function frmAdminBuildJS() {
 	}
 
 	function confirmInfo( msg ) {
-		var $info = initModal( '#frm_confirm_modal', '400px' );
+		var $info = initModal( '#frm_info_modal', '400px' );
 
 		if ( $info === false ) {
 			return false;

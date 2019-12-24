@@ -1,4 +1,4 @@
-<div id="frm_confirm_modal" class="frm_hidden settings-lite-cta frm-inline-modal frm-info-modal">
+<div id="frm_info_modal" class="frm_hidden settings-lite-cta frm-inline-modal frm-info-modal">
 	<div class="metabox-holder">
 		<div class="postbox">
 			<a href="#" class="dismiss alignright" title="<?php esc_attr_e( 'Dismiss this message', 'formidable' ); ?>">
