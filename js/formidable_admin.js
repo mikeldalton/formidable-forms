@@ -369,14 +369,14 @@ function frmAdminBuildJS() {
 		return false;
 	}
 
-	function confirmInfo( msg ) {
+	function infoModal( msg ) {
 		var $info = initModal( '#frm_info_modal', '400px' );
 
 		if ( $info === false ) {
 			return false;
 		}
 
-		jQuery( '.frm-confirm-msg' ).html( msg );
+		jQuery( '.frm-info-msg' ).html( msg );
 
 		$info.dialog( 'open' );
 		return false;
@@ -1236,7 +1236,7 @@ removeMore,
 		slug = slug.trim().toLowerCase();
 		if ( Array.isArray( frm_admin_js.unsafe_params ) && frm_admin_js.unsafe_params.includes( slug ) ) {
 			msg = frm_admin_js.slug_is_reserved;
-			confirmInfo( msg );
+			infoModal( msg );
 		}
 	}
 
@@ -1265,7 +1265,7 @@ removeMore,
 			msg += '\n\n' + unsafeParams + '\n\n';
 			msg += frm_admin_js.reserved_danger;
 
-			confirmInfo( msg );
+			infoModal( msg );
 		}
 	}
 
@@ -3225,11 +3225,18 @@ missingClass = jQuery( parentClass + ' :not(.frm_has_shortcodes) .frm_not_email_
 	function checkActiveAction( type ) {
 		var limit = parseInt( jQuery( '.frm_' + type + '_action' ).data( 'limit' ) );
 		var len = jQuery( '.frm_single_' + type + '_settings' ).length;
+		var limitClass;
 		if ( len >= limit ) {
-			jQuery( '.frm_' + type + '_action' ).removeClass( 'frm_active_action' ).addClass( 'frm_inactive_action' );
+			limitClass = 'frm_inactive_action';
+			limitClass += ( limit > 0 ) ? ' frm_already_used' : '';
+			jQuery( '.frm_' + type + '_action' ).removeClass( 'frm_active_action' ).addClass( limitClass );
 		} else {
-			jQuery( '.frm_' + type + '_action' ).removeClass( 'frm_inactive_action' ).addClass( 'frm_active_action' );
+			jQuery( '.frm_' + type + '_action' ).removeClass( 'frm_inactive_action frm_already_used' ).addClass( 'frm_active_action' );
 		}
+	}
+
+	function onlyOneActionMessage() {
+		infoModal( frm_admin_js.only_one_action );
 	}
 
 	function addFormLogicRow() {
@@ -5200,6 +5207,7 @@ id = input.id;
 			var formSettings = jQuery( '.frm_form_settings' );
 			formSettings.on( 'click', '.frm_add_form_logic', addFormLogicRow );
 			formSettings.on( 'blur', '.frm_email_blur', formatEmailSetting );
+			formSettings.on( 'click', '.frm_already_used', onlyOneActionMessage );
 
 			formSettings.on( 'change', '#logic_link_submit', toggleSubmitLogic );
 			formSettings.on( 'click', '.frm_add_submit_logic', addSubmitLogic );

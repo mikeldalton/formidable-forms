@@ -2204,6 +2204,7 @@ class FrmAppHelper {
 				'unmatched_parens'  => __( 'This calculation has at least one unmatched ( ) { } [ ].', 'formidable' ),
 				'view_shortcodes'   => __( 'This calculation may have shortcodes that work in Views but not forms.', 'formidable' ),
 				'text_shortcodes'   => __( 'This calculation may have shortcodes that work in text calculations but not numeric calculations.', 'formidable' ),
+				'only_one_action'   => __( 'You can only have one of these per form.  This form already has one.  You can delete it and create a new one, if you like.', 'formidable' ),
 				'unsafe_params'     => FrmForm::reserved_words(),
 				'slug_is_reserved'  => __( 'Your Detail Page Slug is a reserved word. This can cause problems. We recommend that you change your slug unless you are an expert.', 'formidable' ),
 				'param_is_reserved' => __( 'The name of your param is a reserved word:', 'formidable' ),
