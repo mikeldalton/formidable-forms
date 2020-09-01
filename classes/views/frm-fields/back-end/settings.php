@@ -21,7 +21,7 @@
 			<label for="frm_name_<?php echo esc_attr( $field['id'] ); ?>">
 				<?php echo esc_html( apply_filters( 'frm_builder_field_label', __( 'Field Label', 'formidable' ), $field ) ); ?>
 			</label>
-			<input type="text" name="field_options[name_<?php echo esc_attr( $field['id'] ); ?>]" value="<?php echo esc_attr( $field['name'] ); ?>" id="frm_name_<?php echo esc_attr( $field['id'] ); ?>" data-changeme="field_label_<?php echo esc_attr( $field['id'] ); ?>" />
+			<input type="text" name="field_options[name_<?php echo esc_attr( $field['id'] ); ?>]" value="<?php echo esc_attr( $field['name'] ); ?>" id="frm_name_<?php echo esc_attr( $field['id'] ); ?>" data-changeme="field_label_<?php echo esc_attr( $field['id'] ); ?>" aria-invalid="false" />
 		</p>
 		<?php } else { ?>
 			<input type="hidden" name="field_options[name_<?php echo esc_attr( $field['id'] ); ?>]" value="<?php echo esc_attr( $field['name'] ); ?>" id="frm_name_<?php echo esc_attr( $field['id'] ); ?>" />
@@ -30,7 +30,7 @@
 		<p class="frm-hide-empty">
 			<?php if ( $display['required'] ) { ?>
 				<label for="frm_req_field_<?php echo esc_attr( $field['id'] ); ?>" class="frm_inline_label">
-					<input type="checkbox" id="frm_req_field_<?php echo esc_attr( $field['id'] ); ?>" class="frm_req_field" name="field_options[required_<?php echo esc_attr( $field['id'] ); ?>]" value="1" <?php checked( $field['required'], 1 ); ?> />
+					<input type="checkbox" id="frm_req_field_<?php echo esc_attr( $field['id'] ); ?>" class="frm_req_field" name="field_options[required_<?php echo esc_attr( $field['id'] ); ?>]" value="1" <?php checked( $field['required'], 1 ); ?> aria-invalid="false" />
 					<?php esc_html_e( 'Required', 'formidable' ); ?>
 				</label>
 				<?php
@@ -47,7 +47,7 @@
 			if ( $display['read_only'] ) {
 				?>
 				<label for="frm_read_only_field_<?php echo esc_attr( $field['id'] ); ?>" class="frm_inline_label frm_help" title="<?php esc_attr_e( 'Read Only: Show this field but do not allow the field value to be edited from the front-end.', 'formidable' ); ?>" >
-					<input type="checkbox" id="frm_read_only_field_<?php echo esc_attr( $field['id'] ); ?>" name="field_options[read_only_<?php echo esc_attr( $field['id'] ); ?>]" value="1" <?php checked( $field['read_only'], 1 ); ?>/>
+					<input type="checkbox" id="frm_read_only_field_<?php echo esc_attr( $field['id'] ); ?>" name="field_options[read_only_<?php echo esc_attr( $field['id'] ); ?>]" value="1" <?php checked( $field['read_only'], 1 ); ?> aria-invalid="false" />
 					<?php esc_html_e( 'Read Only', 'formidable' ); ?>
 				</label>
 				<?php
@@ -81,7 +81,7 @@
 						)
 					);
 					?>
-					<input type="text" name="field_options[classes_<?php echo esc_attr( $field['id'] ); ?>]" value="<?php echo esc_attr( $field['classes'] ); ?>" class="frm_classes" id="frm_classes_<?php echo esc_attr( $field['id'] ); ?>" data-changeme="frm_field_id_<?php echo esc_attr( $field['id'] ); ?>" data-changeatt="class" data-sep=" " data-shortcode="0" />
+					<input type="text" name="field_options[classes_<?php echo esc_attr( $field['id'] ); ?>]" value="<?php echo esc_attr( $field['classes'] ); ?>" class="frm_classes" id="frm_classes_<?php echo esc_attr( $field['id'] ); ?>" data-changeme="frm_field_id_<?php echo esc_attr( $field['id'] ); ?>" data-changeatt="class" data-sep=" " data-shortcode="0" aria-invalid="false" />
 				</span>
 			</p>
 		<?php } ?>
@@ -157,7 +157,7 @@ do_action( 'frm_before_field_options', $field );
 							<?php
 						} else {
 							?>
-							<input type="text" name="<?php echo esc_attr( $default_name ); ?>" value="<?php echo esc_attr( $default_value ); ?>" id="frm_default_value_<?php echo esc_attr( $field['id'] ); ?>" class="default-value-field" data-changeme="field_<?php echo esc_attr( $field['field_key'] ); ?>" data-changeatt="value" data-sep="<?php echo esc_attr( $field_obj->displayed_field_type( $field ) ? ',' : '' ); ?>" />
+							<input type="text" name="<?php echo esc_attr( $default_name ); ?>" value="<?php echo esc_attr( $default_value ); ?>" id="frm_default_value_<?php echo esc_attr( $field['id'] ); ?>" class="default-value-field" data-changeme="field_<?php echo esc_attr( $field['field_key'] ); ?>" data-changeatt="value" data-sep="<?php echo esc_attr( $field_obj->displayed_field_type( $field ) ? ',' : '' ); ?>" aria-invalid="false" />
 							<?php
 						}
 						?>
@@ -183,7 +183,7 @@ do_action( 'frm_before_field_options', $field );
 					<?php
 				} else {
 					?>
-					<input type="text" name="field_options[placeholder_<?php echo esc_attr( $field['id'] ); ?>]" value="<?php echo esc_attr( $field['placeholder'] ); ?>" id="frm_placeholder_<?php echo esc_attr( $field['id'] ); ?>" data-changeme="field_<?php echo esc_attr( $field['field_key'] ); ?>" data-changeatt="placeholder" />
+					<input type="text" name="field_options[placeholder_<?php echo esc_attr( $field['id'] ); ?>]" value="<?php echo esc_attr( $field['placeholder'] ); ?>" id="frm_placeholder_<?php echo esc_attr( $field['id'] ); ?>" data-changeme="field_<?php echo esc_attr( $field['field_key'] ); ?>" data-changeatt="placeholder" aria-invalid="false" />
 					<?php
 				}
 				?>
@@ -205,7 +205,7 @@ do_action( 'frm_before_field_options', $field );
 		<?php if ( $display['show_image'] ) { ?>
 			<p>
 				<label for="frm_show_image_<?php echo esc_attr( $field['id'] ); ?>">
-					<input type="checkbox" id="frm_show_image_<?php echo esc_attr( $field['id'] ); ?>" name="field_options[show_image_<?php echo esc_attr( $field['id'] ); ?>]" value="1" <?php checked( $field['show_image'], 1 ); ?> />
+					<input type="checkbox" id="frm_show_image_<?php echo esc_attr( $field['id'] ); ?>" name="field_options[show_image_<?php echo esc_attr( $field['id'] ); ?>]" value="1" <?php checked( $field['show_image'], 1 ); ?> aria-invalid="false" />
 					<?php esc_html_e( 'If this URL points to an image, show to image on the entries listing page.', 'formidable' ); ?>
 				</label>
 			</p>
@@ -253,7 +253,7 @@ do_action( 'frm_before_field_options', $field );
 				<label>
 					<?php esc_html_e( 'Required Field Indicator', 'formidable' ); ?>
 				</label>
-				<input type="text" name="field_options[required_indicator_<?php echo esc_attr( $field['id'] ); ?>]" value="<?php echo esc_attr( $field['required_indicator'] ); ?>" />
+				<input type="text" name="field_options[required_indicator_<?php echo esc_attr( $field['id'] ); ?>]" value="<?php echo esc_attr( $field['required_indicator'] ); ?>" aria-invalid="false" />
 			</p>
 		<?php } ?>
 
@@ -288,7 +288,7 @@ do_action( 'frm_before_field_options', $field );
 			<label for="field_options_field_key_<?php echo esc_attr( $field['id'] ); ?>" class="frm_help" title="<?php esc_attr_e( 'The field key can be used as an alternative to the field ID in many cases.', 'formidable' ); ?>">
 				<?php esc_html_e( 'Field Key', 'formidable' ); ?>
 			</label>
-			<input type="text" name="field_options[field_key_<?php echo esc_attr( $field['id'] ); ?>]" value="<?php echo esc_attr( $field['field_key'] ); ?>" id="field_options_field_key_<?php echo esc_attr( $field['id'] ); ?>"/>
+			<input type="text" name="field_options[field_key_<?php echo esc_attr( $field['id'] ); ?>]" value="<?php echo esc_attr( $field['field_key'] ); ?>" id="field_options_field_key_<?php echo esc_attr( $field['id'] ); ?>" aria-invalid="false" />
 		</p>
 
 		<?php if ( count( $field_types ) > 1 ) { ?>
@@ -334,7 +334,7 @@ do_action( 'frm_before_field_options', $field );
 						<label for="field_options_blank_<?php echo esc_attr( $field['id'] ); ?>">
 							<?php esc_html_e( 'Required', 'formidable' ); ?>
 						</label>
-						<input type="text" name="field_options[blank_<?php echo esc_attr( $field['id'] ); ?>]" value="<?php echo esc_attr( $field['blank'] ); ?>" id="field_options_blank_<?php echo esc_attr( $field['id'] ); ?>"/>
+						<input type="text" name="field_options[blank_<?php echo esc_attr( $field['id'] ); ?>]" value="<?php echo esc_attr( $field['blank'] ); ?>" id="field_options_blank_<?php echo esc_attr( $field['id'] ); ?>" aria-invalid="false" />
 					</p>
 				<?php } ?>
 
@@ -343,7 +343,7 @@ do_action( 'frm_before_field_options', $field );
 						<label for="field_options_invalid_<?php echo esc_attr( $field['id'] ); ?>">
 							<?php esc_html_e( 'Invalid Format', 'formidable' ); ?>
 						</label>
-						<input type="text" name="field_options[invalid_<?php echo esc_attr( $field['id'] ); ?>]" value="<?php echo esc_attr( $field['invalid'] ); ?>" id="field_options_invalid_<?php echo esc_attr( $field['id'] ); ?>"/>
+						<input type="text" name="field_options[invalid_<?php echo esc_attr( $field['id'] ); ?>]" value="<?php echo esc_attr( $field['invalid'] ); ?>" id="field_options_invalid_<?php echo esc_attr( $field['id'] ); ?>" aria-invalid="false" />
 					</p>
 					<?php
 				}
@@ -354,7 +354,7 @@ do_action( 'frm_before_field_options', $field );
 						<label for="field_options_unique_msg_<?php echo esc_attr( $field['id'] ); ?>">
 							<?php esc_html_e( 'Unique', 'formidable' ); ?>
 						</label>
-						<input type="text" name="field_options[unique_msg_<?php echo esc_attr( $field['id'] ); ?>]" value="<?php echo esc_attr( $field['unique_msg'] ); ?>" id="field_options_unique_msg_<?php echo esc_attr( $field['id'] ); ?>" />
+						<input type="text" name="field_options[unique_msg_<?php echo esc_attr( $field['id'] ); ?>]" value="<?php echo esc_attr( $field['unique_msg'] ); ?>" id="field_options_unique_msg_<?php echo esc_attr( $field['id'] ); ?>" aria-invalid="false" />
 					</p>
 					<?php
 				}
@@ -365,7 +365,7 @@ do_action( 'frm_before_field_options', $field );
 						<label for="field_options_conf_msg_<?php echo esc_attr( $field['id'] ); ?>">
 							<?php esc_html_e( 'Confirmation', 'formidable' ); ?>
 						</label>
-						<input type="text" name="field_options[conf_msg_<?php echo esc_attr( $field['id'] ); ?>]" value="<?php echo esc_attr( $field['conf_msg'] ); ?>" id="field_options_conf_msg_<?php echo esc_attr( $field['id'] ); ?>" />
+						<input type="text" name="field_options[conf_msg_<?php echo esc_attr( $field['id'] ); ?>]" value="<?php echo esc_attr( $field['conf_msg'] ); ?>" id="field_options_conf_msg_<?php echo esc_attr( $field['id'] ); ?>" aria-invalid="false" />
 					</p>
 					<?php
 				}
