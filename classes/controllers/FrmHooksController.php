@@ -181,6 +181,7 @@ class FrmHooksController {
 		add_action( 'wp_ajax_frm_get_shortcode_opts', 'FrmFormsController::get_shortcode_opts' );
 		add_action( 'wp_ajax_frm_forms_preview', 'FrmFormsController::preview' );
 		add_action( 'wp_ajax_nopriv_frm_forms_preview', 'FrmFormsController::preview' );
+		add_action( 'wp_ajax_frm_load_new_form_modal', 'FrmFormsController::new_form_overlay_html' );
 		add_action( 'wp_ajax_frm_forms_trash', 'FrmFormsController::ajax_trash' );
 		add_action( 'wp_ajax_frm_install_form', 'FrmFormsController::build_new_form' );
 		add_action( 'wp_ajax_frm_build_template', 'FrmFormsController::build_template' );

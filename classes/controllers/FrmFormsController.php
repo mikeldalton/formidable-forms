@@ -793,6 +793,54 @@ class FrmFormsController {
 		return $frm_expired;
 	}
 
+	public static function new_form_overlay_html() {
+		self::before_list_templates();
+
+		$plugin_path      = FrmAppHelper::plugin_path();
+		$shared_path      = $plugin_path . '/classes/views/shared/';		
+		$expired          = self::expired();
+		$expiring         = FrmAddonsController::is_license_expiring();
+		$user             = wp_get_current_user(); // $user used in leave-email.php to determine a default value for field
+		$view_path        = $shared_path . 'new-form-overlay/';
+		$modal_class      = '';
+		$upgrade_link     = FrmAppHelper::admin_upgrade_link(
+			array(
+				'medium'  => 'new-template',
+				'content' => 'upgrade',
+			)
+		);
+		$renew_link       = FrmAppHelper::admin_upgrade_link(
+			array(
+				'medium'  => 'new-template',
+				'content' => 'renew',
+			)
+		);
+		$blocks_to_render = array();
+
+		if ( ! FrmAppHelper::pro_is_installed() ) {
+			// avoid rendering the email and code blocks for users who have upgraded or have a free license already
+			$api = new FrmFormTemplateApi();
+			if ( ! $api->get_free_license() ) {
+				array_push( $blocks_to_render, 'email', 'code' );
+			}
+		}
+
+		// avoid rendering the upgrade block for users with elite
+		if ( 'elite' !== FrmAddonsController::license_type() ) {
+			$blocks_to_render[] = 'upgrade';
+		}
+
+		// avoid rendering the renew block for users who are not currently expired
+		if ( $expired ) {
+			$blocks_to_render[] = 'renew';
+			$modal_class        = 'frm-expired';
+		} elseif ( $expiring ) {
+			$modal_class = 'frm-expiring';
+		}
+
+		include $shared_path . 'new-form-overlay.php';
+	}
+
 	/**
 	 * Get data from api before rendering it so that we can flag the modal as expired
 	 */
@@ -867,7 +915,6 @@ class FrmFormsController {
 		$templates_by_category[ $my_templates_translation ] = $custom_templates;
 
 		unset( $pricing, $license_type, $where );
-		wp_enqueue_script( 'accordion' ); // register accordion for template groups
 		require $view_path . 'list-templates.php';
 	}
 

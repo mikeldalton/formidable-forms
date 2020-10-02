@@ -4725,12 +4725,14 @@ function frmAdminBuildJS() {
 	}
 
 	function triggerNewFormModal( event ) {
+		console.log( 'triggerNewFormModal' );
+		event.preventDefault();
+		initNewFormModal( onNewFormTriggerReady );
+	}
+		
+	function onNewFormTriggerReady() {
 		var $modal,
 			dismiss = document.getElementById( 'frm_new_form_modal' ).querySelector( 'a.dismiss' );
-
-		if ( typeof event !== 'undefined' ) {
-			event.preventDefault();
-		}
 
 		dismiss.setAttribute( 'tabindex', -1 );
 
@@ -5429,7 +5431,39 @@ function frmAdminBuildJS() {
 
 	/* Templates */
 
-	function initNewFormModal() {
+	function initNewFormModal( callback ) {
+		console.log( 'initNewFormModal' );
+	
+		var placeholder = document.getElementById( 'frm_new_form_modal_placeholder' );
+
+		if ( placeholder === null ) {
+			if ( typeof callback !== 'undefined' ) {
+				callback();
+			}
+
+			return;
+		}
+
+		console.log( 'calling' );
+
+		jQuery.ajax({
+			type: 'POST',
+			url: ajaxurl,
+			data: {
+				action: 'frm_load_new_form_modal'
+			},
+			success: function( data ) {
+				jQuery( placeholder ).replaceWith( data );
+				onNewFormModalLoad();
+
+				if ( typeof callback !== 'undefined' ) {
+					callback();
+				}
+			}
+		});
+	}
+
+	function onNewFormModalLoad() {
 		var installFormTrigger,
 			activeHoverIcons,
 			activeTemplateKey,
@@ -5439,7 +5473,6 @@ function frmAdminBuildJS() {
 			handleConfirmEmailAddressError,
 			urlParams;
 
-		jQuery( document ).on( 'click', '.frm-trigger-new-form-modal', triggerNewFormModal );
 		$modal = initModal( '#frm_new_form_modal', '600px' );
 
 		installFormTrigger = document.createElement( 'a' );
@@ -6292,8 +6325,7 @@ function frmAdminBuildJS() {
 				// Solution install page
 				frmAdminBuild.solutionInit();
 			} else {
-				// New form selection page
-				initNewFormModal();
+				jQuery( document ).on( 'click', '.frm-trigger-new-form-modal', triggerNewFormModal );
 				initSelectionAutocomplete();
 
 				jQuery( '[data-frmprint]' ).click( function() {
