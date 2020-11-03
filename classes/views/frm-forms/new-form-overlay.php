@@ -170,7 +170,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<svg class="frmsvg">
 				<use xlink:href="#frm_eye_simple"></use>
 			</svg>
-		</a><a role="button" href="#" class="frm-create-form" aria-label="<?php esc_attr_e( 'Create form', 'formidable' ); ?>" title="<?php esc_attr_e( 'Create form', 'formidable' ); ?>">
+		</a><a role="button" href="#" class="frm-create-form frm-create-hover-icon" aria-label="<?php esc_attr_e( 'Create form', 'formidable' ); ?>" title="<?php esc_attr_e( 'Create form', 'formidable' ); ?>">
 			<svg class="frmsvg">
 				<use xlink:href="#frm_plus_icon"></use>
 			</svg>
