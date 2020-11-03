@@ -52,7 +52,7 @@ var FrmFormsConnect = window.FrmFormsConnect || ( function( document, window, $ 
 				app.updateForm( msg.data );
 			});
 
-			jQuery( document ).on( 'mouseover', '#frm_new_form_modal .frm-selectable', function() {
+			jQuery( document ).on( 'mouseover', '.frm-modal .frm-selectable', function() {
 				var $item = jQuery( this ),
 					$icons = $item.find( '.frm-hover-icons' ),
 					$clone;
@@ -66,7 +66,7 @@ var FrmFormsConnect = window.FrmFormsConnect || ( function( document, window, $ 
 				$icons.show();
 			});
 
-			jQuery( document ).on( 'mouseout', '#frm_new_form_modal .frm-selectable', function() {
+			jQuery( document ).on( 'mouseout', '.frm-modal .frm-selectable', function() {
 				var $item = jQuery( this ),
 					$icons = $item.find( '.frm-hover-icons' );
 

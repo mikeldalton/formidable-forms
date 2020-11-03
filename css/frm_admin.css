@@ -1960,8 +1960,8 @@ h2.frm-h2 + .howto {
 	text-align: left;
 }
 
-.frm-templates-list .frm-add-blank-form .frm-category-icon .frmsvg,
-.frm-templates-list li:last-child div:not(.frm-hover-icons) > .frmsvg {
+#frm_new_form_modal .frm-templates-list .frm-add-blank-form .frm-category-icon .frmsvg,
+#frm_new_form_modal .frm-templates-list li:last-child div:not(.frm-hover-icons) > .frmsvg {
 	color: #fff;
 	transform: translateY(10px);
 }
@@ -2048,7 +2048,7 @@ h2.frm-h2 + .howto {
     border-radius: 0;
 }
 
-.frm-templates-list.frm-categories-list li > div > div:last-child,
+#frm_new_form_modal .frm-templates-list.frm-categories-list li > div > div:last-child,
 #frm_new_form_modal .accordion-section .frm-featured-form
 {
 	padding-left: 0;
@@ -2100,7 +2100,7 @@ h2.frm-h2 + .howto {
 	margin-right: 5px;
 }
 
-.frm-hover-icons > .frm-create-form {
+.frm-hover-icons > .frm-create-hover-icon {
 	background-color: var(--primary-color);
 }
 
@@ -2128,16 +2128,16 @@ h2.frm-h2 + .howto {
 	transform: translateY(-2px);
 }
 
-.frm-hover-icons > .frm-create-form .frmsvg {
+.frm-hover-icons > .frm-create-hover-icon .frmsvg {
 	width: 14px;
 	height: 14px;
 }
 
-.frm-hover-icons .frm-create-form svg {
+.frm-hover-icons .frm-create-hover-icon svg {
 	color: #fff;
 }
 
-.frm-hover-icons .frm-create-form:hover,
+.frm-hover-icons .frm-create-hover-icon:hover,
 .frm-hover-icons > .frm-unlock-form:hover,
 .frm-hover-icons > .frm-unlock-form:hover .frmsvg
 {
