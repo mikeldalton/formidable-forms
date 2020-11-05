@@ -11,7 +11,7 @@ class FrmAppHelper {
 	/**
 	 * @since 2.0
 	 */
-	public static $plug_version = '4.08';
+	public static $plug_version = '4.09';
 
 	/**
 	 * @since 1.07.02
@@ -83,6 +83,15 @@ class FrmAppHelper {
 	 * @param string $upgrade_link
 	 */
 	public static function conditional_action_button( $addon, $license_type, $plan_required, $upgrade_link ) {
+		if ( ! $addon ) {
+			?>
+			<a class="install-now button button-secondary frm-button-secondary" href="<?php echo esc_url( $upgrade_link ); ?>" target="_blank" rel="noopener" aria-label="<?php esc_attr_e( 'Upgrade Now', 'formidable' ); ?>">
+				<?php esc_html_e( 'Upgrade Now', 'formidable' ); ?>
+			</a>
+			<?php
+			return;
+		}
+
 		if ( $addon['status']['type'] === 'installed' ) {
 			?>
 			<a rel="<?php echo esc_attr( $addon['plugin'] ); ?>" class="button button-primary frm-button-primary frm-activate-addon <?php echo esc_attr( empty( $addon['activate_url'] ) ? 'frm_hidden' : '' ); ?>">
@@ -170,7 +179,7 @@ class FrmAppHelper {
 			&nbsp;
 			<?php esc_html_e( 'Your account has expired', 'formidable' ); ?>
 			<div style="float:right">
-				<a href="<?php echo esc_url( self::admin_upgrade_link( 'form-renew', 'account/downloads/' ) ); ?>">
+				<a href="<?php echo esc_url( self::admin_upgrade_link( 'form-expired', 'account/downloads/' ) ); ?>">
 					Renew Now
 				</a>
 			</div>
@@ -183,7 +192,7 @@ class FrmAppHelper {
 	 */
 	public static function expiring_message() {
 		$expiring = FrmAddonsController::is_license_expiring();
-		if ( ! $expiring ) {
+		if ( ! $expiring || $expiring < 0 ) {
 			return;
 		}
 		?>
@@ -2716,7 +2725,6 @@ class FrmAppHelper {
 			'sv'     => __( 'Swedish', 'formidable' ),
 			'ta'     => __( 'Tamil', 'formidable' ),
 			'th'     => __( 'Thai', 'formidable' ),
-			'tu'     => __( 'Turkish', 'formidable' ),
 			'tr'     => __( 'Turkish', 'formidable' ),
 			'uk'     => __( 'Ukranian', 'formidable' ),
 			'vi'     => __( 'Vietnamese', 'formidable' ),
@@ -2724,10 +2732,10 @@ class FrmAppHelper {
 
 		if ( $type === 'captcha' ) {
 			// remove the languages unavailable for the captcha
-			$unset = array( 'af', 'sq', 'hy', 'az', 'eu', 'bs', 'zh-HK', 'eo', 'et', 'fo', 'fr-CH', 'he', 'is', 'ms', 'sr-SR', 'ta', 'tu' );
+			$unset = array( 'af', 'sq', 'hy', 'az', 'eu', 'bs', 'zh-HK', 'eo', 'et', 'fo', 'fr-CH', 'he', 'is', 'ms', 'sr-SR', 'ta' );
 		} else {
 			// remove the languages unavailable for the datepicker
-			$unset = array( 'fil', 'fr-CA', 'de-AT', 'de-CH', 'iw', 'hi', 'pt', 'pt-PT', 'es-419', 'tr' );
+			$unset = array( 'fil', 'fr-CA', 'de-AT', 'de-CH', 'iw', 'hi', 'pt', 'pt-PT', 'es-419' );
 		}
 
 		$locales = array_diff_key( $locales, array_flip( $unset ) );
