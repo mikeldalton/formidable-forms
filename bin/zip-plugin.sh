@@ -57,7 +57,7 @@ zip -r $zipname $destination \
 	-x "*/vendor/*" \
 	-x "*/webpack.config.js" \
 	-x "*.zip"
-
+#-x "formidable-pro/views/*" \
 if [ ! -z "$3" ]; then
 	rm -rf $destination
 fi
