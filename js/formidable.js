@@ -1158,9 +1158,12 @@ function frmFrontFormJS() {
 				};
 			}
 
-			recaptchaID = grecaptcha.render( captcha.id, params );
-
-			captcha.setAttribute( 'data-rid', recaptchaID );
+			try {
+				recaptchaID = grecaptcha.render( captcha.id, params );
+				captcha.setAttribute( 'data-rid', recaptchaID );
+			} catch ( e ) {
+				// Avoid Error: reCAPTCHA has already been rendered in this element if rendering the same Captcha field twice.
+			}
 		},
 
 		afterSingleRecaptcha: function() {
