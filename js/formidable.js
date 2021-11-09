@@ -262,7 +262,7 @@ function frmFrontFormJS() {
 			fieldID = '',
 			fileID = field.getAttribute( 'data-frmfile' );
 
-		if ( field.type === 'hidden' && fileID === null && ! hasClass( field, 'ssa_appointment_form_field_appointment_id' ) ) {
+		if ( field.type === 'hidden' && fileID === null && ! hasClass( field, 'ssa_appointment_form_field_appointment_id' ) && ! isLookupList( field ) ) {
 			return errors;
 		}
 
@@ -336,6 +336,19 @@ function frmFrontFormJS() {
 		}
 
 		return errors;
+	}
+
+	function isLookupList( field ) {
+		var fieldID, lookupData;
+		if ( 'undefined' === typeof __FRMLOOKUP ) {
+			return false;
+		}
+		fieldID = getFieldId( field, true );
+		if ( typeof __FRMLOOKUP[ fieldID ] === 'undefined' ) {
+			return false;
+		}
+		lookupData = __FRMLOOKUP[ fieldID ];
+		return 'data' === lookupData.inputType;
 	}
 
 	function isSignatureField( field ) {
