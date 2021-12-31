@@ -885,7 +885,14 @@ class FrmField {
 	}
 
 	public static function no_save_fields() {
-		return array( 'divider', 'end_divider', 'captcha', 'break', 'html', 'form', 'summary' );
+		/**
+		 * Allows modifying the list of no save field types.
+		 *
+		 * @since 5.0.17
+		 *
+		 * @param array $field_types Field types.
+		 */
+		return apply_filters( 'frm_no_save_field_types', array( 'divider', 'end_divider', 'captcha', 'break', 'html', 'form', 'summary' ) );
 	}
 
 	/**
