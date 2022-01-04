@@ -1162,7 +1162,11 @@ function frmFrontFormJS() {
 				formID = jQuery( captcha ).closest( 'form' ).find( 'input[name="form_id"]' ).val();
 				jQuery( captcha ).closest( '.frm_form_field .frm_primary_label' ).hide();
 				params.callback = function( token ) {
-					frmFrontForm.afterRecaptcha( token, formID );
+					if ( jQuery( captcha ).next( '.frm_dropzone' ).length ) {
+						jQuery( document ).trigger( 'frmAfterCaptcha', token );
+					} else {
+						frmFrontForm.afterRecaptcha( token, formID );
+					}
 				};
 			}
 
