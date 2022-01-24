@@ -78,6 +78,10 @@ function frmFrontFormJS() {
 		// Check if 'this' is in a repeating section
 		if ( jQuery( 'input[name="item_meta[' + fieldId + '][form]"]' ).length ) {
 
+			if ( -1 !== [ 'radio', 'checkbox' ].indexOf( field.type ) && jQuery( field ).closest( '.frm_likert' ).length ) {
+				return fieldId;
+			}
+
 			// this is a repeatable section with name: item_meta[repeating-section-id][row-id][field-id]
 			fieldId = nameParts[2].replace( '[', '' );
 			isRepeating = true;
